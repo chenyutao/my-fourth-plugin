@@ -1,6 +1,5 @@
 package com.yupaopao.platform.plugin.drink.service;
 
-import com.intellij.openapi.components.Service;
 import com.yupaopao.platform.plugin.drink.config.DrinkRemindSettingConfig;
 import com.yupaopao.platform.plugin.drink.ui.RemindDialog;
 import com.yupaopao.platform.plugin.drink.util.SystemNotifyUtil;
@@ -10,7 +9,6 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
-@Service
 public final class PluginCoreService {
     private DrinkRemindSettingConfig settingConfig;
 
@@ -20,6 +18,15 @@ public final class PluginCoreService {
     private Boolean inRestRemindStep = false;
     private final Long pluginStartTime = System.currentTimeMillis();
     private Long remindStartTime = System.currentTimeMillis();
+
+    private static PluginCoreService INSTANCE;
+
+    public static PluginCoreService getInstance(){
+        if(INSTANCE==null){
+            INSTANCE = new PluginCoreService();
+        }
+        return INSTANCE;
+    }
 
     public void init() {
         DrinkRemindSettingConfig settingConfig = DrinkRemindSettingConfig.getInstance();

@@ -53,8 +53,7 @@ public class RemindDialog extends JDialog {
 
     private void onOK() {
         // 记录喝水时间
-        PluginCoreService pluginCoreService = ApplicationManager.getApplication().getService(PluginCoreService.class);
-        pluginCoreService.logDrinkAndPrepareNext();
+        PluginCoreService.getInstance().logDrinkAndPrepareNext();
 
         // 关闭窗口
         dispose();

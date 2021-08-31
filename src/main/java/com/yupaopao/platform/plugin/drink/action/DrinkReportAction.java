@@ -14,8 +14,7 @@ public class DrinkReportAction extends AnAction {
         // 弹窗
         JOptionPane.showMessageDialog(null, "小伙子真棒！😁", "Message", JOptionPane.INFORMATION_MESSAGE);
         // 记录喝水时间
-        PluginCoreService pluginCoreService = ApplicationManager.getApplication().getService(PluginCoreService.class);
-        pluginCoreService.logDrinkAndPrepareNext();
+        PluginCoreService.getInstance().logDrinkAndPrepareNext();
     }
 
 }

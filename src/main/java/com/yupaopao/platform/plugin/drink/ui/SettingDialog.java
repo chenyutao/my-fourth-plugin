@@ -54,8 +54,7 @@ public class SettingDialog extends JDialog {
          */
         setSize(500, 200);//对话框的长宽
         setLocation(400,200);
-        PluginCoreService pluginCoreService = ApplicationManager.getApplication().getService(PluginCoreService.class);
-        DrinkRemindSettingConfig settingConfig = pluginCoreService.getSettingConfig();
+        DrinkRemindSettingConfig settingConfig = PluginCoreService.getInstance().getSettingConfig();
         Integer maxLastWorkMinutes = settingConfig.getMaxLastWorkMinutes();
         Integer remindIntervalMinutes = settingConfig.getRemindIntervalMinutes();
         Long lastDrinkTime = settingConfig.getLastDrinkTime();
@@ -81,8 +80,7 @@ public class SettingDialog extends JDialog {
             return;
         }
         // 更新设置，重新计时
-        PluginCoreService pluginCoreService = ApplicationManager.getApplication().getService(PluginCoreService.class);
-        pluginCoreService.updateSettingAndReload(Integer.valueOf(text1), Integer.parseInt(text2));
+        PluginCoreService.getInstance().updateSettingAndReload(Integer.valueOf(text1), Integer.parseInt(text2));
         // 发系统消息提醒
         SystemNotifyUtil.msgNotify("喝水提醒更新成功");
         // 关闭面板
@@ -98,15 +96,10 @@ public class SettingDialog extends JDialog {
         if(StringUtils.isEmpty(text)){
             return false;
         }
-        if (!NumberUtils.isCreatable(text)) {
-            return false;
-        }
-        Integer intVal = NumberUtils.createInteger(text);
-        System.out.printf("isValidateInput text:{%s} intVal:{%s}%n",text,intVal);
-        try {
+        try{
+            int intVal = Integer.parseInt(text);
             return intVal > 0;
-        } catch (Exception e) {
-            e.printStackTrace();
+        }catch (NumberFormatException e){
             return false;
         }
 
