@@ -1,0 +1,39 @@
+<idea-plugin>
+    <id>com.yupaopao.platform.plugin.drink.my-fourth-plugin</id>
+    <name>程序员要定时起来歇一会儿喝喝水</name>
+    <vendor email="chenyutao111@163.com" url="https://github.com/chenyutao">鱼泡泡</vendor>
+
+    <description><![CDATA[
+     <p>有问题请联系糖果互娱部开发人员 陈玉滔</p>
+    <hr>
+    <p>如果你也经常沉迷于写代码,忘了起身休息喝水,那么试试这个插件吧</p>
+      <ol>
+        <li>在菜单栏的Tools中,打开DrinkWater插件进行设置</li>
+        <li>设置工作时间和休息时间,并且保存</li>
+        <li>当设置的时间一到,就会有弹框提醒你休息</li>
+    </ol>
+    ]]></description>
+    <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+<!--    <depends>com.intellij.modules.lang</depends>-->
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+        <preloadingActivity implementation="com.yupaopao.platform.plugin.drink.task.PreLoadLastSettingHandler"/>
+        <notificationGroup displayType="BALLOON" id="RestAndDrinkNotification"/>
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+        <action id="drinkWater" class="com.yupaopao.platform.plugin.drink.action.DrinkRemindSettingAction"
+                text="定时喝水设置" description="定时喝水设置">
+            <add-to-group group-id="ToolsMenu" anchor="first"/>
+        </action>
+        <action id="DrinkWaterReport" class="com.yupaopao.platform.plugin.drink.action.DrinkReportAction"
+                text="我又喝水啦~" description="上报喝水">
+            <add-to-group group-id="ToolsMenu" anchor="last" />
+        </action>
+
+    </actions>
+</idea-plugin>
