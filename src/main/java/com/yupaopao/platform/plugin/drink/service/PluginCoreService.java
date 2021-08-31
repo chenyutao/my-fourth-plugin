@@ -5,14 +5,13 @@ import com.yupaopao.platform.plugin.drink.config.DrinkRemindSettingConfig;
 import com.yupaopao.platform.plugin.drink.ui.RemindDialog;
 import com.yupaopao.platform.plugin.drink.util.SystemNotifyUtil;
 
-import javax.swing.*;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
 @Service
 public final class PluginCoreService {
-    private DrinkRemindSettingConfig settingConfig;
+    private final DrinkRemindSettingConfig settingConfig = DrinkRemindSettingConfig.getInstance();
 
     private Timer workTimeTimer = new Timer();
     private Timer remindTimer = new Timer();
@@ -21,11 +20,8 @@ public final class PluginCoreService {
     private final Long pluginStartTime = System.currentTimeMillis();
     private Long remindStartTime = System.currentTimeMillis();
 
-    public void init() {
-        DrinkRemindSettingConfig settingConfig = DrinkRemindSettingConfig.getInstance();
-        this.settingConfig = settingConfig;
+    {
         this.reloadSetting(settingConfig);
-
         // 2. 发通知
         String msgContent = "休息提醒插件: 初始化成功";
         SystemNotifyUtil.msgNotify(msgContent);

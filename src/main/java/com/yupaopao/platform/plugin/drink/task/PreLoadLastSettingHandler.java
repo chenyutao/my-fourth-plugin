@@ -9,8 +9,7 @@ import org.jetbrains.annotations.NotNull;
 public class PreLoadLastSettingHandler extends PreloadingActivity {
     @Override
     public void preload(@NotNull ProgressIndicator indicator) {
-        PluginCoreService pluginCoreService = ApplicationManager.getApplication().getService(PluginCoreService.class);
-        pluginCoreService.init();
+       ApplicationManager.getApplication().getService(PluginCoreService.class);
     }
 
 }
