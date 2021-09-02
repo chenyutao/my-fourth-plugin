@@ -21,7 +21,6 @@
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
         <preloadingActivity implementation="com.yupaopao.platform.plugin.drink.task.PreLoadLastSettingHandler"/>
-        <notificationGroup displayType="BALLOON" id="RestAndDrinkNotification"/>
     </extensions>
 
     <actions>
